@@ -34,3 +34,24 @@ test('Login with valid credentials', async ({page}) => {
     await expect(page.getByRole('heading', {name: "Account Logout"})).toBeVisible();
     await expect(page.url()).toContain("route=account/logout");
 });
+
+test('Login to Sauce Labs with valid credentials', async ({page}) => {
+    await page.goto("https://www.saucedemo.com/");
+    await expect(page.locator("#root div .login_logo")).toBeVisible();
+    await page.getByPlaceholder("Username").clear();
+    await page.getByPlaceholder("Username").fill("standard_user");
+
+    await page.getByPlaceholder("Password").clear();
+    await page.getByPlaceholder("Password").fill("secret_sauce");
+
+    await page.locator("#login-button").click();
+
+    //assert if login is successful
+    await expect(page.locator("#header_container .header_label div")).toBeVisible();
+    await expect(page.locator("#shopping_cart_container")).toBeVisible();
+
+    //logout
+    await page.locator("#react-burger-menu-btn").click();
+    await page.getByRole('link', {name: "Logout"}).click();
+    await expect(page.locator("#root div .login_logo")).toBeVisible();
+})

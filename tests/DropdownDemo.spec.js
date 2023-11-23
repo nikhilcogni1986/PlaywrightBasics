@@ -38,3 +38,26 @@ test('Drop down demo on web uni with disabled option', async ({page}) => {
         await console.log(value);
     }
 });
+
+test('Handle Auto suggestive drop down',
+    async ({page}) => {
+        await page.goto("https://webdriveruniversity.com/Autocomplete-TextField/autocomplete-textfield.html");
+        await expect(page.locator("h2[name='contactme']")).toBeVisible();
+        await page.locator("#myInput").pressSequentially("Ba");
+
+        const options = await page.locator("div#myInputautocomplete-list div input");
+        let No_Of_Options = await options.count();
+        await console.log(No_Of_Options);
+        let food_item = "Barley";
+
+        //loop through the options and get value from each element and select the desired element
+        for (let i = 0; i < No_Of_Options; i++) {
+            const option_value = await options.nth(i).getAttribute("value");
+            await console.log(option_value);
+            if (option_value === food_item) {
+                await page.getByText(food_item).click();
+                break;
+            }
+        }
+        await page.locator("#submit-button").click();
+    });
