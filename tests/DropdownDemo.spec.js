@@ -61,3 +61,93 @@ test('Handle Auto suggestive drop down',
         }
         await page.locator("#submit-button").click();
     });
+
+    test('Auto Suggestions in a frame window', async({page})=>
+    {
+        await page.goto("https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo");
+        await expect(page.getByRole('heading',{name:'Jquery Dropdown Search Demo'})).toBeVisible();
+
+        await selectCountry("India");
+        await selectCountry("Australia");
+        await selectCountry("Denmark");
+        await selectCountry("South Africa");
+        await page.waitForTimeout(3000)
+
+        async function selectCountry(countryName)
+        {
+            await page.locator("#country+span").click();
+            const country_locator = await page.locator("ul.select2-results__options")
+                .locator('li',{hasText:countryName}).click();
+        }
+    })
+
+    test('Demo on static drop downs', async({page})=>
+    {
+        await page.goto("https://www.lambdatest.com/selenium-playground/select-dropdown-demo");
+        await page.locator("#select-demo").selectOption({label:'Sunday'});
+        await expect(page.locator("p.selected-value")).toContainText('Sunday');
+        await page.waitForTimeout(2000);
+        await page.locator("#select-demo").selectOption({index:5});
+        await page.waitForTimeout(2000);
+        await expect(page.locator("p.selected-value")).toContainText('Thursday');
+    });
+
+test('Demo on Multi select drop downs', async({page})=>
+{
+    await page.goto("https://www.lambdatest.com/selenium-playground/select-dropdown-demo");
+    await page.locator("#multi-select").selectOption([
+        {
+            label: "Texas"
+        }, {
+            index: 2
+        }, {
+            value: "Washington"
+        }
+    ]);
+
+    await page.getByRole('button', { name: 'First Selected' }).click();
+    await expect(page.locator("span.genderbutton")).toContainText("Texas");
+
+    await page.locator("printAll").click();
+    await expect(page.locator(".groupradiobutton.block.break-words")).toContainText("Washington");
+
+});
+
+test('Validate the options selected in multi select drop down', async({page})=>
+{
+    await page.goto("https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo");
+    await page.locator("span.select2-selection__arrow").first().click();
+
+    await page.locator("span.select2-dropdown.select2-dropdown--below span input.select2-search__field").fill("India");
+    await page.getByRole('treeitem', { name: 'India' }).click();
+});
+
+test('Multiple value selection from the drop down',async({page})=>
+{
+    await page.goto("https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo");
+    await page.getByPlaceholder("Select state(s)").click();
+
+    await selectCountry("Idaho");
+    await page.locator("li.select2-search.select2-search--inline input").click();
+    await selectCountry("Iowa");
+
+    async function selectCountry(expected_country_name)
+    {
+        //Approach1
+        const option_locator = await page.locator("li.select2-results__option");
+        const options_count = await option_locator.count();
+        await console.log(options_count);
+
+        //loop to select the country names
+        for(let i=0 ; i<options_count; i++)
+        {
+            let country_name = await option_locator.nth(i).textContent();
+            await console.log(country_name)
+            if(country_name ===expected_country_name)
+            {
+                await option_locator.nth(i).click();
+                break;
+            }
+        }
+    }
+})
