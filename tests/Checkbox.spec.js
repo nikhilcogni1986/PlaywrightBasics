@@ -32,3 +32,11 @@ test('Checkbox Example2', async ({page}) => {
     //Assert checkbox2 is now un-checked
     expect(await page.isChecked('input[type=checkbox]:nth-child(3)')).toBeFalsy();
 });
+
+test('Demo on checkboxes Example3', async ({page}) => {
+    await page.goto("https://www.lambdatest.com/selenium-playground/checkbox-demo");
+    await page.locator("#isAgeSelected").check();
+    await expect(page.locator("#txtAge")).toBeVisible();
+    await expect(page.locator('.mt-30 > div > div > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(3) > input')
+        .isDisabled()).toBeTruthy();
+});
