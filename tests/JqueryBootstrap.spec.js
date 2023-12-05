@@ -12,7 +12,7 @@ test('JqueryBootstrap Drop down', async ({page}) => {
     await expect(options).toEqual(4);
 
     for (let i = 0; i < options; i++) {
-        let innertext_option = await page.locator("ul.dropdown-menu li a").textContent();
+        let innertext_option = await page.locator("ul.dropdown-menu li a").nth(i).textContent();
         if (innertext_option === "HTML" || innertext_option === "Angular JS") {
             await page.locator("ul.dropdown-menu li a").nth(i).click();
         }

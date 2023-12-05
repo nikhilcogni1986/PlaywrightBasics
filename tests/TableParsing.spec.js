@@ -48,8 +48,7 @@ test('TableParsing with reusable function', async ({page}) => {
     }
 });
 
-test('Table data extraction', async({page}) =>
-{
+test('Table data extraction', async ({page}) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
 
     //get the locator for table, count for rows and columns
@@ -57,19 +56,16 @@ test('Table data extraction', async({page}) =>
     const columns = await table.locator("thead tr th");
     const rows = await table.locator("tbody tr");
 
-    for(let i=0 ; i<await rows.count(); i++)
-    {
+    for (let i = 0; i < await rows.count(); i++) {
         const selectRow = rows.nth(i);
         const selectedColumn = selectRow.locator("td");
-        for(let j=0 ; j<await selectedColumn.count()-1; j++)
-        {
+        for (let j = 0; j < await selectedColumn.count() - 1; j++) {
             await console.log(await selectedColumn.nth(j).textContent());
         }
     }
 });
 
-test('Table data extraction along with pagination', async({page}) =>
-{
+test('Table data extraction along with pagination', async ({page}) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
 
     //get the locator for table, count for rows and columns
@@ -81,18 +77,14 @@ test('Table data extraction along with pagination', async({page}) =>
     const pages = await page.locator("ul#pagination li a");
     const numberOfPages = await pages.count();
 
-    for(let k=0; k<numberOfPages; k++)
-    {
-        if(k>0)
-        {
+    for (let k = 0; k < numberOfPages; k++) {
+        if (k > 0) {
             await pages.nth(k).click();
         }
-        for(let i=0 ; i<await rows.count(); i++)
-        {
+        for (let i = 0; i < await rows.count(); i++) {
             const selectRow = rows.nth(i);
             const selectedColumn = selectRow.locator("td");
-            for(let j=0 ; j<await selectedColumn.count()-1; j++)
-            {
+            for (let j = 0; j < await selectedColumn.count() - 1; j++) {
                 await console.log(await selectedColumn.nth(j).textContent());
             }
         }

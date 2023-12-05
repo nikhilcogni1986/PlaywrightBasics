@@ -28,10 +28,9 @@ module.exports = defineConfig({
             name: 'chromium',
             use:
                 {
-                    browserName:'chromium',
-                    headless: 'false'
+                    browserName: 'chromium',
+                    headless: true
                 },
         },
     ],
 });
-
