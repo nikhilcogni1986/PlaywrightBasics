@@ -1,0 +1,14 @@
+1. Run all the tests in headless mode
+npx playwright test
+
+2. Run playwright test in headed mode
+npx playwright test --headed
+
+3. open the report
+npx playwright show-report
+
+4. Run the specific test
+npx playwright tests <<relative test path file>>
+
+5. Debug mode
+npx playwright test --debug
