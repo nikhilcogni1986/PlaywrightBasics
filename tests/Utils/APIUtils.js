@@ -1,14 +1,12 @@
 import {expect} from "@playwright/test";
 
-class APIUtils
-{
-    constructor(apiContext, loginPayload)
-    {
+class APIUtils {
+    constructor(apiContext, loginPayload) {
         this.apiContext = apiContext;
         this.loginPayload = loginPayload;
     }
-    async getToken()
-    {
+
+    async getToken() {
         const loginResponse = await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login",
             {
                 data: this.loginPayload
@@ -20,14 +18,13 @@ class APIUtils
         return token;
     }
 
-    async createOrder(orderPayload)
-    {
+    async createOrder(orderPayload) {
         let response = {};
         response.token = await this.getToken();
         const orderResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",
             {
                 data: orderPayload,
-                headers:{
+                headers: {
                     'Authorization': this.getToken(),
                     'Content-Type': 'Application/Json'
                 }
@@ -37,4 +34,5 @@ class APIUtils
         return response;
     }
 }
+
 module.exports = {APIUtils};

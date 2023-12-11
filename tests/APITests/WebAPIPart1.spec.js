@@ -1,4 +1,5 @@
 import {expect, request, test} from '@playwright/test';
+
 const {APiUtils} = require('../Utils/APIUtils');
 const loginPayLoad = {userEmail: "nikhilrao@test.com", userPassword: "Password1234"};
 let response;
@@ -6,14 +7,14 @@ const orderPayload = {orders: [{country: "Cuba", productOrderedId: "6262e95ae26b
 
 test.beforeAll(async () => {
     const apiContext = await request.newContext();
-    const apiUtils = new APiUtils(apiContext,loginPayLoad);
-    response =  await apiUtils.createOrder(orderPayload);
-    })
+    const apiUtils = new APiUtils(apiContext, loginPayLoad);
+    response = await apiUtils.createOrder(orderPayload);
+})
 test('WebAPIPart1', async ({page}) => {
 
     await page.addInitScript(value => {
-        window.localStorage.setItem('token',value);
-    }, response.token );
+        window.localStorage.setItem('token', value);
+    }, response.token);
 
     await page.goto("https://rahulshettyacademy.com/client/");
     await page.waitForLoadState('networkidle');
