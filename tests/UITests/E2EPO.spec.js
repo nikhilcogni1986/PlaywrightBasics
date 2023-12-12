@@ -2,6 +2,7 @@ import {test} from '@playwright/test';
 import {LoginPage} from '../../PageObjects/LoginPage'
 import {DashboardPage} from '../../PageObjects/DashboardPage'
 import {CartPage} from '../../PageObjects/CartPage'
+import {OrdersReviewPage} from '../../PageObjects/OrdersReviewPage';
 
 test('E2EPO.spec.js', async ({page}) => {
     const username = "nikhilrao@test.com";
@@ -10,6 +11,7 @@ test('E2EPO.spec.js', async ({page}) => {
     const loginPage = new LoginPage(page);
     const dashboardPage = new DashboardPage(page);
     const cartPage = new CartPage(page);
+    const ordersReviewPage = new OrdersReviewPage(page);
 
     //Login to Application
     await loginPage.loadUrl();
@@ -24,5 +26,11 @@ test('E2EPO.spec.js', async ({page}) => {
     await cartPage.VerifyProductIsDisplayed(productName);
     await cartPage.checkout();
 
+    //Select the country and fill order details
+    await ordersReviewPage.searchCountryAndSelect('Ind', 'India');
+    await ordersReviewPage.VerifyEmailId(username);
+    const orderId = await ordersReviewPage.SubmitAndGetOrderId();
+    await console.log(orderId);
+    await page.pause();
 
 });
