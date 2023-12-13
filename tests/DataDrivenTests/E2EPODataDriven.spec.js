@@ -5,10 +5,10 @@ import {CartPage} from '../../PageObjects/CartPage'
 import {OrdersReviewPage} from '../../PageObjects/OrdersReviewPage';
 import {OrdersHistoryPage} from '../../PageObjects/OrdersHistoryPage';
 
+const dataset = JSON.parse(JSON.stringify(require("../../TestData/placeOrderTestData.json")));
+
 test('E2EPODataDriven.spec.js', async ({page}) => {
-    const username = "nikhilrao@test.com";
-    const password = "Password1234";
-    const productName = 'zara coat 3'
+
     const loginPage = new LoginPage(page);
     const dashboardPage = new DashboardPage(page);
     const cartPage = new CartPage(page);
@@ -17,20 +17,20 @@ test('E2EPODataDriven.spec.js', async ({page}) => {
 
     //Login to Application
     await loginPage.loadUrl();
-    await loginPage.loginToApp(username, password);
+    await loginPage.loginToApp(dataset.username, dataset.password);
     await page.waitForLoadState('networkidle');
 
     //Search the product and add it to cart
-    await dashboardPage.searchProductAddToCart(productName);
+    await dashboardPage.searchProductAddToCart(dataset.productName);
     await dashboardPage.navigateToCart();
 
     //Verify if product is added to the cart
-    await cartPage.VerifyProductIsDisplayed(productName);
+    await cartPage.VerifyProductIsDisplayed(dataset.productName);
     await cartPage.checkout();
 
     //Select the country and fill order details
     await ordersReviewPage.searchCountryAndSelect('ind', 'India');
-    await ordersReviewPage.VerifyEmailId(username);
+    await ordersReviewPage.VerifyEmailId(dataset.username);
     const orderId = await ordersReviewPage.SubmitAndGetOrderId();
     await console.log(orderId);
     await dashboardPage.navigateToOrders();
@@ -38,4 +38,5 @@ test('E2EPODataDriven.spec.js', async ({page}) => {
     //Validate the Orders History page for added product
     await ordersHistoryPage.searchOrderAndSelect(orderId);
     expect(orderId.includes(await ordersHistoryPage.getOrderId())).toBeTruthy();
+
 });
