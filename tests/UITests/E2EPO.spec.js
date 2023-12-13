@@ -1,8 +1,9 @@
-import {test} from '@playwright/test';
+import {expect, test} from '@playwright/test';
 import {LoginPage} from '../../PageObjects/LoginPage'
 import {DashboardPage} from '../../PageObjects/DashboardPage'
 import {CartPage} from '../../PageObjects/CartPage'
 import {OrdersReviewPage} from '../../PageObjects/OrdersReviewPage';
+import {OrdersHistoryPage} from '../../PageObjects/OrdersHistoryPage';
 
 test('E2EPO.spec.js', async ({page}) => {
     const username = "nikhilrao@test.com";
@@ -12,6 +13,7 @@ test('E2EPO.spec.js', async ({page}) => {
     const dashboardPage = new DashboardPage(page);
     const cartPage = new CartPage(page);
     const ordersReviewPage = new OrdersReviewPage(page);
+    const ordersHistoryPage = new OrdersHistoryPage(page);
 
     //Login to Application
     await loginPage.loadUrl();
@@ -27,10 +29,15 @@ test('E2EPO.spec.js', async ({page}) => {
     await cartPage.checkout();
 
     //Select the country and fill order details
-    await ordersReviewPage.searchCountryAndSelect('Ind', 'India');
+    await ordersReviewPage.searchCountryAndSelect('ind', 'India');
     await ordersReviewPage.VerifyEmailId(username);
     const orderId = await ordersReviewPage.SubmitAndGetOrderId();
     await console.log(orderId);
+    await dashboardPage.navigateToOrders();
+
+    //Validate the Orders History page for added product
+    await ordersHistoryPage.searchOrderAndSelect(orderId);
+    expect(orderId.includes(await ordersHistoryPage.getOrderId())).toBeTruthy();
     await page.pause();
 
 });
