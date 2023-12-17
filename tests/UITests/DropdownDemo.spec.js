@@ -1,5 +1,6 @@
 import {expect, test} from '@playwright/test';
 
+test.describe.configure({mode: 'parallel'})
 test('DropdownDemo.spec.js', async ({page}) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     await expect(page.getByRole('heading', {name: 'Practice Page'})).toBeVisible();
@@ -88,26 +89,6 @@ test('Demo on static drop downs', async ({page}) => {
     await page.waitForTimeout(2000);
     await expect(page.locator("p.selected-value")).toContainText('Thursday');
 });
-
-// test('Demo on Multi select drop downs', async ({page}) => {
-//     await page.goto("https://www.lambdatest.com/selenium-playground/select-dropdown-demo");
-//     await page.locator("#multi-select").selectOption([
-//         {
-//             label: "Texas"
-//         }, {
-//             index: 2
-//         }, {
-//             value: "Washington"
-//         }
-//     ]);
-//
-//     await page.getByRole('button', {name: 'First Selected'}).click();
-//     await expect(page.locator("span.genderbutton")).toContainText("Texas");
-//
-//     await page.locator("#printAll").click();
-//     await expect(page.locator(".groupradiobutton.block.break-words")).toContainText("Washington");
-//
-// });
 
 test('Validate the options selected in multi select drop down', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo");

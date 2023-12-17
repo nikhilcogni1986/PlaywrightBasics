@@ -12,3 +12,6 @@ npx playwright tests <<relative test path file>>
 
 5. Debug mode
 npx playwright test --debug
+
+6. Run tests with specific project configuration
+npx playwright test <test-file-path> --project <name of the project>

@@ -12,6 +12,7 @@ const {defineConfig, devices} = require('@playwright/test');
  */
 module.exports = defineConfig({
     testDir: './tests',
+    retries: 1,
     /* Run tests in files in parallel */
     fullyParallel: false,
     reporter: 'html',
@@ -25,12 +26,37 @@ module.exports = defineConfig({
     /* Configure projects for major browsers */
     projects: [
         {
-            name: 'chromium',
+            name: 'Chrome',
             use:
                 {
                     browserName: 'chromium',
-                    headless: true
+                    headless: false,
+                    screenshot: 'off',
+                    trace: "off",
+                    ignoreHTTPSErrors: true
                 },
         },
+        {
+            name: 'Safari',
+            use:
+                {
+                    browserName: 'webkit',
+                    headless: true,
+                    screenshot: 'off',
+                    trace: "off"
+                }
+        },
+        {
+            name: 'Firefox',
+            use:
+                {
+                    browserName: 'firefox',
+                    headless: false,
+                    screenshot: 'off',
+                    trace: "off",
+                    ...devices['Desktop Firefox'],
+                    viewport: {height: 1080, width: 1600}
+                }
+        }
     ],
 });
