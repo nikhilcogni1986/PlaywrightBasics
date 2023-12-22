@@ -5,7 +5,7 @@ import {CartPage} from '../../PageObjects/CartPage'
 import {OrdersReviewPage} from '../../PageObjects/OrdersReviewPage';
 import {OrdersHistoryPage} from '../../PageObjects/OrdersHistoryPage';
 
-test('E2EPODataDriven.spec.js', async ({page}) => {
+test('@WebUI E2EPODataDriven.spec.js', async ({page}) => {
     const username = "nikhilrao@test.com";
     const password = "Password1234";
     const productName = 'zara coat 3'

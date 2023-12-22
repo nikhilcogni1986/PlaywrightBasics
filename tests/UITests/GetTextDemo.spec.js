@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('GetTextDemo.spec.js', async ({page}) => {
+test('@WebUI GetTextDemo.spec.js', async ({page}) => {
     await page.goto("https://naveenautomationlabs.com/opencart/index.php?route=common/home");
     await page.getByText('My Account Register Login').click();
 
@@ -25,7 +25,7 @@ test('GetTextDemo.spec.js', async ({page}) => {
     console.log(productNames);
 });
 
-test('Demonstrate the text content function', async ({page}) => {
+test('@WebUI Demonstrate the text content function', async ({page}) => {
     await page.goto("https://rahulshettyacademy.com/angularpractice/");
     await page.getByRole("link", {name: 'Shop'}).click();
 

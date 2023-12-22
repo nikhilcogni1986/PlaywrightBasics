@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('Alerts with Ok', async ({page}) => {
+test('@WebUI Alerts with Ok', async ({page}) => {
     //Before we click on alert or pop up we need to handle via handler
     page.on('dialog', async dialog => {
         expect(dialog.type()).toContain('alert');
@@ -11,7 +11,7 @@ test('Alerts with Ok', async ({page}) => {
     await page.locator("button[class='btn btn-dark my-30 mx-10 hover:bg-lambda-900 hover:border-lambda-900']").click();
 });
 
-test('Alerts with Ok and Cancel', async ({page}) => {
+test('@WebUI Alerts with Ok and Cancel', async ({page}) => {
     //Before we click on alert or pop up we need to handle via handler
     page.on('dialog', async dialog => {
         expect(dialog.type()).toContain('confirm');
@@ -23,7 +23,7 @@ test('Alerts with Ok and Cancel', async ({page}) => {
     await expect(page.locator('#confirm-demo')).toHaveText("You pressed OK!");
 });
 
-test('Alerts with Prompt box', async ({page}) => {
+test('@WebUI Alerts with Prompt box', async ({page}) => {
     //Before we click on alert or pop up we need to handle via handler
     page.on('dialog', async dialog => {
         expect(dialog.type()).toContain('prompt');

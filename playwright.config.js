@@ -30,33 +30,33 @@ module.exports = defineConfig({
             use:
                 {
                     browserName: 'chromium',
-                    headless: false,
+                    headless: true,
                     screenshot: 'off',
                     trace: "off",
                     ignoreHTTPSErrors: true
                 },
         },
-        {
-            name: 'Safari',
-            use:
-                {
-                    browserName: 'webkit',
-                    headless: true,
-                    screenshot: 'off',
-                    trace: "off"
-                }
-        },
-        {
-            name: 'Firefox',
-            use:
-                {
-                    browserName: 'firefox',
-                    headless: false,
-                    screenshot: 'off',
-                    trace: "off",
-                    ...devices['Desktop Firefox'],
-                    viewport: {height: 1080, width: 1600}
-                }
-        }
+        // {
+        //     name: 'Safari',
+        //     use:
+        //         {
+        //             browserName: 'webkit',
+        //             headless: true,
+        //             screenshot: 'off',
+        //             trace: "off"
+        //         }
+        // },
+        // {
+        //     name: 'Firefox',
+        //     use:
+        //         {
+        //             browserName: 'firefox',
+        //             headless: false,
+        //             screenshot: 'off',
+        //             trace: "off",
+        //             ...devices['Desktop Firefox'],
+        //             viewport: {height: 1080, width: 1600}
+        //         }
+        // }
     ],
 });

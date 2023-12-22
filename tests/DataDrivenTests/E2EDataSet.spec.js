@@ -8,7 +8,7 @@ import {OrdersHistoryPage} from '../../PageObjects/OrdersHistoryPage';
 const dataset = JSON.parse(JSON.stringify(require("../../TestData/placeOrderTestDataSet.json")));
 
 for (const data of dataset) {
-    test(`Place an order for ${data.productName}`, async ({page}) => {
+    test(`@WebUI Place an order for ${data.productName}`, async ({page}) => {
 
         const loginPage = new LoginPage(page);
         const dashboardPage = new DashboardPage(page);

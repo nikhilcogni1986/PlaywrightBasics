@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 
 test.describe.configure({mode: 'parallel'})
-test('DropdownDemo.spec.js', async ({page}) => {
+test(' @WebUI DropdownDemo.spec.js', async ({page}) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     await expect(page.getByRole('heading', {name: 'Practice Page'})).toBeVisible();
 
@@ -14,20 +14,20 @@ test('DropdownDemo.spec.js', async ({page}) => {
     await expect((await (page.locator("#dropdown-class-example").textContent())).includes("Option2")).toBeTruthy();
 });
 
-test("Drop down demo on web", async ({page}) => {
+test("@WebUI Drop down demo on web", async ({page}) => {
     await page.goto("https://the-internet.herokuapp.com/dropdown");
     await page.locator("#dropdown").selectOption({index: 1});
     await page.waitForTimeout(2000)
     await expect(page.locator("#dropdown")).toHaveValue("1");
 });
 
-test('Drop down demo on web uni', async ({page}) => {
+test('@WebUI Drop down demo on web uni', async ({page}) => {
     await page.goto("https://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
     await page.locator("#dropdowm-menu-2").selectOption({label: 'Maven'});
     await expect(page.locator("#dropdowm-menu-2")).toHaveValue("maven");
 });
 
-test('Drop down demo on web uni with disabled option', async ({page}) => {
+test('@WebUI Drop down demo on web uni with disabled option', async ({page}) => {
     await page.goto("https://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
     let dropdown = await page.$("select.dropdown-menu-lists");
     let options = await dropdown.$$('option');
@@ -40,7 +40,7 @@ test('Drop down demo on web uni with disabled option', async ({page}) => {
     }
 });
 
-test('Handle Auto suggestive drop down',
+test('@WebUI Handle Auto suggestive drop down',
     async ({page}) => {
         await page.goto("https://webdriveruniversity.com/Autocomplete-TextField/autocomplete-textfield.html");
         await expect(page.locator("h2[name='contactme']")).toBeVisible();
@@ -63,7 +63,7 @@ test('Handle Auto suggestive drop down',
         await page.locator("#submit-button").click();
     });
 
-test('Auto Suggestions in a frame window', async ({page}) => {
+test('@WebUI Auto Suggestions in a frame window', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo");
     await expect(page.getByRole('heading', {name: 'Jquery Dropdown Search Demo'})).toBeVisible();
 
@@ -80,7 +80,7 @@ test('Auto Suggestions in a frame window', async ({page}) => {
     }
 })
 
-test('Demo on static drop downs', async ({page}) => {
+test('@WebUI Demo on static drop downs', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/select-dropdown-demo");
     await page.locator("#select-demo").selectOption({label: 'Sunday'});
     await expect(page.locator("p.selected-value")).toContainText('Sunday');
@@ -90,7 +90,7 @@ test('Demo on static drop downs', async ({page}) => {
     await expect(page.locator("p.selected-value")).toContainText('Thursday');
 });
 
-test('Validate the options selected in multi select drop down', async ({page}) => {
+test('@WebUI Validate the options selected in multi select drop down', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo");
     await page.locator("span.select2-selection__arrow").first().click();
 
@@ -98,7 +98,7 @@ test('Validate the options selected in multi select drop down', async ({page}) =
     await page.getByRole('treeitem', {name: 'India'}).click();
 });
 
-test('Multiple value selection from the drop down', async ({page}) => {
+test('@WebUI Multiple value selection from the drop down', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/jquery-dropdown-search-demo");
     await page.getByPlaceholder("Select state(s)").click();
 

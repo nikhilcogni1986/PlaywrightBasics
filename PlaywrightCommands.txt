@@ -15,3 +15,6 @@ npx playwright test --debug
 
 6. Run tests with specific project configuration
 npx playwright test <test-file-path> --project <name of the project>
+
+7. Run the tests with tags using grep command
+npx playwright test --grep @WebUI

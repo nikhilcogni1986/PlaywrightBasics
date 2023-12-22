@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('JqueryBootstrap Drop down', async ({page}) => {
+test('@WebUI JqueryBootstrap Drop down', async ({page}) => {
     await page.goto("http://seleniumpractise.blogspot.com/2016/08/bootstrap-dropdown-example-for-selenium.html");
 
     //click on the dropdown button
@@ -19,7 +19,7 @@ test('JqueryBootstrap Drop down', async ({page}) => {
     }
 });
 
-test('Bootstrap Dual List Demo', async ({page}) => {
+test('@WebUI Bootstrap Dual List Demo', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/bootstrap-dual-list-box-demo");
 
     const left_listbox = await page.locator("ul.list-group.sp_list_group li");

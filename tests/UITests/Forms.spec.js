@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('Simple Form Demo', async ({page}) => {
+test('@WebUI Simple Form Demo', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/simple-form-demo");
 
     const message = "Sample Message";

@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('TableParsing', async ({page}) => {
+test('@WebUI TableParsing', async ({page}) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
 
     //get the locator for table, count for rows and columns
@@ -21,7 +21,7 @@ test('TableParsing', async ({page}) => {
     await matchedRow.locator('input').click();
 });
 
-test('TableParsing with reusable function', async ({page}) => {
+test('@WebUI TableParsing with reusable function', async ({page}) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
 
     //get the locator for table, count for rows and columns
@@ -48,7 +48,7 @@ test('TableParsing with reusable function', async ({page}) => {
     }
 });
 
-test('Table data extraction', async ({page}) => {
+test('@WebUI Table data extraction', async ({page}) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
 
     //get the locator for table, count for rows and columns
@@ -65,7 +65,7 @@ test('Table data extraction', async ({page}) => {
     }
 });
 
-test('Table data extraction along with pagination', async ({page}) => {
+test('@WebUI Table data extraction along with pagination', async ({page}) => {
     await page.goto("https://testautomationpractice.blogspot.com/");
 
     //get the locator for table, count for rows and columns

@@ -7,7 +7,7 @@ import {OrdersHistoryPage} from '../../PageObjects/OrdersHistoryPage';
 
 const dataset = JSON.parse(JSON.stringify(require("../../TestData/placeOrderTestData.json")));
 
-test('E2EPODataDriven.spec.js', async ({page}) => {
+test('@WebUI E2EPODataDriven.spec.js', async ({page}) => {
 
     const loginPage = new LoginPage(page);
     const dashboardPage = new DashboardPage(page);

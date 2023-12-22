@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('Checkbox.spec.js', async ({page}) => {
+test('@WebUI Checkbox.spec.js', async ({page}) => {
     await page.goto("https://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html");
 
     //click on Option1 checkbox
@@ -12,7 +12,7 @@ test('Checkbox.spec.js', async ({page}) => {
     expect(await page.isChecked("#checkboxes label input[value='option-3']")).toBeTruthy();
 });
 
-test('Checkbox Example2', async ({page}) => {
+test('@WebUI Checkbox Example2', async ({page}) => {
     await page.goto('https://the-internet.herokuapp.com/checkboxes');
 
     //check whether checkboxes are checked or unchecked
@@ -33,7 +33,7 @@ test('Checkbox Example2', async ({page}) => {
     expect(await page.isChecked('input[type=checkbox]:nth-child(3)')).toBeFalsy();
 });
 
-test('Demo on checkboxes Example3', async ({page}) => {
+test('@WebUI Demo on checkboxes Example3', async ({page}) => {
     await page.goto("https://www.lambdatest.com/selenium-playground/checkbox-demo");
     await page.locator("#isAgeSelected").check();
     await expect(page.locator("#txtAge")).toBeVisible();

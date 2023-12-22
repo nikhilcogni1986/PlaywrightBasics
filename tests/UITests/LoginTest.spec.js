@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('Login with valid credentials', async ({page}) => {
+test('@WebUI Login with valid credentials', async ({page}) => {
     await page.goto("https://naveenautomationlabs.com/opencart/index.php?route=common/home");
     const actual_Url = await page.url();
     const expected_url = "https://naveenautomationlabs.com/opencart/index.php?route=common/home";
@@ -35,7 +35,7 @@ test('Login with valid credentials', async ({page}) => {
     await expect(page.url()).toContain("route=account/logout");
 });
 
-test('Login to Sauce Labs with valid credentials', async ({page}) => {
+test('@WebUI Login to Sauce Labs with valid credentials', async ({page}) => {
     await page.goto("https://www.saucedemo.com/");
     await expect(page.locator("#root div .login_logo")).toBeVisible();
     await page.getByPlaceholder("Username").clear();

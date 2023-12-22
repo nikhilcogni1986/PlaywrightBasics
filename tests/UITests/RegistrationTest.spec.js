@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('Navigate to Registration Page', async ({page}) => {
+test('@WebUI Navigate to Registration Page', async ({page}) => {
     await page.goto("https://naveenautomationlabs.com/opencart/index.php?route=common/home");
     const actual_Url = await page.url();
     const expected_url = "https://naveenautomationlabs.com/opencart/index.php?route=common/home";

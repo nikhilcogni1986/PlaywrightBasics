@@ -1,6 +1,6 @@
 import {test} from '@playwright/test';
 
-test('FrameDemo.spec.js', async ({page}) => {
+test('@WebUI FrameDemo.spec.js', async ({page}) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     const framesPage = await page.frameLocator("#courses-iframe");
     await framesPage.locator("li a[href*='lifetime-access']:visible").click();

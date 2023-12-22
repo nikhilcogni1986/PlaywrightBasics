@@ -1,6 +1,6 @@
 import {expect, test} from '@playwright/test';
 
-test('SauceDemo Login', async ({page}) => {
+test('@WebUI SauceDemo Login', async ({page}) => {
     await page.goto("https://www.saucedemo.com/")
     await expect(page.locator("div.login_logo")).toBeVisible();
 
