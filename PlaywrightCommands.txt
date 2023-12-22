@@ -18,3 +18,9 @@ npx playwright test <test-file-path> --project <name of the project>
 
 7. Run the tests with tags using grep command
 npx playwright test --grep @WebUI
+
+8. Allure Report
+npx playwright test --grep @WebUI --reporter=line,allure-playwright
+npm install -g allure-commandline
+npx allure generate ./allure-results --clean
+npx allure open ./allure-report

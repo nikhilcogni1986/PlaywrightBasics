@@ -4,14 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "AllTests": "npx playwright test"
+    "AllTests": "npx playwright test",
+    "WebTests": "npx playwright test --grep @WebUI --reporter=line,allure-playwright",
+    "APITests": "npx playwright test --grep @API"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nikhil Rao",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.39.0",
-    "@types/node": "^20.9.0"
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.9.0",
+    "allure-commandline": "^2.25.0",
+    "allure-playwright": "^2.10.0"
   },
   "dependencies": {
     "npx": "^10.2.2"
